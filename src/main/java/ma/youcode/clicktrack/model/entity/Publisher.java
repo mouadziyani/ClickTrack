@@ -3,7 +3,7 @@ package ma.youcode.clicktrack.model.entity;
 import ma.youcode.clicktrack.model.enums.Categorie;
 
 public class Publisher {
-    private int id;
+    private Long id;
     private String nom;
     private String prenom;
     private Categorie categorie;
@@ -12,18 +12,18 @@ public class Publisher {
 
     }
 
-    public Publisher(int id, String nom, String prenom, Categorie categorie) {
+    public Publisher(Long id, String nom, String prenom, Categorie categorie) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.categorie = categorie;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
