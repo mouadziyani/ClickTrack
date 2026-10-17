@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="publisherRepository"
-          class="ma.youcode.clicktrack.repository.PublisherRepositery"/>
-
-    <bean id="lienRepository"
-          class="ma.youcode.clicktrack.repository.LienRepositery"/>
+          class="ma.youcode.clicktrack.repository.PublisherRepositoryImp"/>
 
     <bean id="publisherService"
-          class="ma.youcode.clicktrack.service.PublisherService">
+          class="ma.youcode.clicktrack.service.PublisherServiceImp">
         <constructor-arg ref="publisherRepository"/>
     </bean>
 
-    <bean id="lienService"
-          class="ma.youcode.clicktrack.service.LienService">
-        <constructor-arg ref="lienRepository"/>
+    <bean id="linkRepository"
+          class="ma.youcode.clicktrack.repository.LinkRepositoryImp"/>
+
+    <bean id="linkService"
+          class="ma.youcode.clicktrack.service.LinkServiceImp">
+        <constructor-arg ref="linkRepository"/>
         <constructor-arg ref="publisherRepository"/>
     </bean>
 
