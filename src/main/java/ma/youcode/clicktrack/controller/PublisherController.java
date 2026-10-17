@@ -38,6 +38,9 @@ public class PublisherController {
     public List<offreDto> getOffre(@PathVariable("id") long id){
         return lService.getOffres(id);
     }
-
+    @GetMapping("/{id}/liens")
+    public List<Lien> getLiens(@PathVariable("id") long id){
+        return lService.getPublisherLink(id);
+    }
 
 }
