@@ -34,4 +34,10 @@ public class PublisherController {
         lService.save(id, dto);
     }
 
+    @GetMapping("/{id}/offres")
+    public List<offreDto> getOffre(@PathVariable("id") long id){
+        return lService.getOffres(id);
+    }
+
+
 }
