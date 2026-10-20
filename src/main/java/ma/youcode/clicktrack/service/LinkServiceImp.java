@@ -3,6 +3,9 @@ package ma.youcode.clicktrack.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
+
 import ma.youcode.clicktrack.model.dto.clickDto;
 import ma.youcode.clicktrack.model.dto.linkDto;
 import ma.youcode.clicktrack.model.dto.offreDto;
@@ -22,12 +25,12 @@ public class LinkServiceImp implements LinkService {
     }
 
     @Override
-    public void save(long pId, linkDto dto) {    
-        Long id =lRepository.getAll().size()+1L;
-        Lien nLink = new Lien(id,dto.getOffre(), dto.getUrl(), pId);
+    public Lien save(long pId, linkDto dto) {
+        Long id = lRepository.getAll().size() + 1L;
+        Lien nLink = new Lien(id,dto.getOffre(),dto.getUrl(),pId);
         lRepository.save(nLink);
+        return nLink;
     }
-
     @Override
     public List<offreDto> getOffres(long id) {  
         return lRepository.getAll().stream()
@@ -49,10 +52,15 @@ public class LinkServiceImp implements LinkService {
 
     @Override
     public clickDto click(long id) {
-      Lien l = lRepository.getAll().stream().filter(li->li.getId() == id).findFirst().orElseThrow(()-> new RuntimeException("link not found"));
+      Lien l = lRepository.getAll().stream()
+          .filter(li -> li.getId() == id)
+          .findFirst()
+          .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "link not found"));
       l.setClicks(l.getClicks()+1);
-      Publisher p = this.pRepository.getAll().stream().filter(pb->pb.getId() == id).findFirst().orElse(null);
-      String name = p.getNom() + " " + p.getNom();
+      Publisher p = pRepository.getAll().stream()
+          .filter(pb -> pb.getId().equals(l.getPublisherId()))
+          .findFirst().orElse(null);
+      String name = p.getPrenom() + " " + p.getNom();
 
       return new clickDto(l.getUrlDestination(), name, l.getOffre(), (long) l.getClicks());
     }

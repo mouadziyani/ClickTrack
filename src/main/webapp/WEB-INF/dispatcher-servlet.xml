@@ -15,4 +15,8 @@
         <constructor-arg ref="linkService"/>
     </bean>
 
+    <bean class="ma.youcode.clicktrack.controller.LinksController">
+        <constructor-arg ref="linkService"/>
+    </bean>
+
 </beans>

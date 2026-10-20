@@ -1,6 +1,7 @@
 package ma.youcode.clicktrack.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import ma.youcode.clicktrack.model.dto.linkDto;
 import ma.youcode.clicktrack.model.dto.offreDto;
@@ -30,8 +31,18 @@ public class PublisherController {
 
     @PostMapping("/{id}/liens")
     @ResponseStatus(HttpStatus.CREATED)
-    public void save(@PathVariable("id")Long id, @RequestBody linkDto dto){
-        lService.save(id, dto);
+    public Map<String, Object> save(
+            @PathVariable("id") Long id,
+            @RequestBody linkDto dto) {
+
+        Lien lien = lService.save(id, dto);
+
+        String trackingUrl = "/t/" + lien.getId();
+
+        return Map.of(
+                "id", lien.getId(),
+                "trackingUrl", trackingUrl
+        );
     }
 
     @GetMapping("/{id}/offres")

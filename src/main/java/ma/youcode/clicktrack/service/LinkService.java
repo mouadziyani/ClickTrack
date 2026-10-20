@@ -8,7 +8,7 @@ import ma.youcode.clicktrack.model.dto.offreDto;
 import ma.youcode.clicktrack.model.entity.Lien;
 
 public interface LinkService {
-    void save(long pId, linkDto dto);
+    Lien save(long pId, linkDto dto);
     public List<offreDto> getOffres(long id);
     public List<Lien> getPublisherLink(long id);
     public clickDto click(long id);

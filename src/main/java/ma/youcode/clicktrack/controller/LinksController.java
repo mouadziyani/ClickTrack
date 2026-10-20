@@ -10,17 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 import ma.youcode.clicktrack.model.dto.clickDto;
 import ma.youcode.clicktrack.service.LinkService;
 
-@RestController 
-@RequestMapping ("/t")
+@RestController
+@RequestMapping("/t")
 public class LinksController {
-    private final LinkService lService ;
-    public LinksController(LinkService lService){
-        this.lService=lService;
+
+    private final LinkService lService;
+
+    public LinksController(LinkService lService) {
+        this.lService = lService;
     }
 
-    @GetMapping ("/{id}")
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public clickDto click(@PathVariable("id")long id){
+    @GetMapping("/{id}")
+    public clickDto click(@PathVariable("id") long id) {
         return lService.click(id);
     }
 }
