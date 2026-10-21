@@ -1,27 +1,26 @@
 package ma.youcode.clicktrack.model.entity;
 
 public class Lien {
-    private int id;
+    private Long id;
     private String offre;
     private String urlDestination;
     private int clicks;
-    private int publisherId;
+    private Long publisherId;
 
     public Lien(){}
 
-    public Lien(int id, String offre, String urlDestination, int clicks, int publisherId) {
+    public Lien(Long id, String offre, String urlDestination, Long publisherId) {
         this.id = id;
         this.offre = offre;
         this.urlDestination = urlDestination;
-        this.clicks = clicks;
         this.publisherId = publisherId;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -49,11 +48,11 @@ public class Lien {
         this.clicks = clicks;
     }
 
-    public int getPublisherId() {
+    public Long getPublisherId() {
         return publisherId;
     }
 
-    public void setPublisherId(int publisherId) {
+    public void setPublisherId(Long publisherId) {
         this.publisherId = publisherId;
     }
 }
